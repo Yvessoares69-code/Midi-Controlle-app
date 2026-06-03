@@ -44,3 +44,17 @@ Wrap(
     KnobControl(ccNumber: 11, label: "Master FX"),
   ],
 ),
+body: Column(
+  children: [
+    Container(height: 150, child: MidiScanner()), // Menu superior
+    Divider(color: Colors.white),
+    Expanded(
+      child: Wrap(
+        children: [
+          TriggerPad(note: 60, label: "Kick"),
+          TriggerPad(note: 62, label: "Snare"),
+        ],
+      ),
+    ),
+  ],
+)
