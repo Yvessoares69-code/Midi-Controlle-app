@@ -20,3 +20,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+// No seu main.dart
+FaderControl(ccNumber: 7, label: "Volume"),
