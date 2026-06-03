@@ -35,3 +35,12 @@ body: Padding(
     ],
   ),
 ),
+Wrap(
+  spacing: 20.0,
+  runSpacing: 20.0,
+  children: [
+    FaderControl(ccNumber: 7, label: "Volume"),
+    KnobControl(ccNumber: 10, label: "Pan"),
+    KnobControl(ccNumber: 11, label: "Master FX"),
+  ],
+),
