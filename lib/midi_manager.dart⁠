@@ -20,3 +20,33 @@ class MidiManager {
     _midiCommand.sendData([0xB0, cc, value]);
   }
 }
+import 'package:flutter_midi_command/flutter_midi_command.dart';
+
+class MidiManager {
+  final MidiCommand _midiCommand = MidiCommand();
+
+  // Envia valores contínuos (Faders e Knobs)
+  void sendCC(int cc, int value) {
+    // 0xB0 = Control Change, Canal 1
+    _midiCommand.sendData([0xB0, cc, value]);
+  }
+
+  // Dispara notas (Pads - Bateria/Samples)
+  // note: número da nota (0-127)
+  // velocity: força do toque (0-127)
+  void sendNote(int note, int velocity) {
+    // 0x90 = Note On, Canal 1
+    // 0x80 = Note Off, Canal 1
+    if (velocity > 0) {
+      _midiCommand.sendData([0x90, note, velocity]);
+    } else {
+      _midiCommand.sendData([0x80, note, 0]);
+    }
+  }
+
+  // Verifica se o dispositivo está pronto para enviar dados
+  Future<bool> isConnected() async {
+    var devices = await _midiCommand.connectedDevices;
+    return devices != null && devices.isNotEmpty;
+  }
+}
