@@ -1,0 +1,22 @@
+import 'package:flutter_midi_command/flutter_midi_command.dart';
+
+class MidiManager {
+  final MidiCommand _midiCommand = MidiCommand();
+
+  // Escaneia dispositivos (Bluetooth/USB)
+  Future<List<MidiDevice>> getDevices() async {
+    return await _midiCommand.devices;
+  }
+
+  // Conecta ao dispositivo escolhido
+  void connect(MidiDevice device) {
+    _midiCommand.connectToDevice(device);
+  }
+
+  // Envia um comando de CC (Control Change)
+  // cc: número do controle (ex: 7 para volume)
+  // value: valor (0 a 127)
+  void sendCC(int cc, int value) {
+    _midiCommand.sendData([0xB0, cc, value]);
+  }
+}
