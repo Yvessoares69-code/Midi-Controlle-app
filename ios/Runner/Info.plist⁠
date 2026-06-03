@@ -1,0 +1,6 @@
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>Este app precisa de Bluetooth para conectar a equipamentos de áudio.</string>
+<key>UIBackgroundModes</key>
+<array>
+   <string>bluetooth-central</string>
+</array>
