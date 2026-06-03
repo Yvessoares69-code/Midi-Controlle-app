@@ -1,0 +1,15 @@
+// Adicione este bloco dentro do seu build, envolvendo o Slider:
+SliderTheme(
+  data: SliderTheme.of(context).copyWith(
+    trackHeight: 8.0,
+    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+    overlayShape: RoundSliderOverlayShape(overlayRadius: 20.0),
+    activeTrackColor: Colors.amber[700], // Cor de destaque (ex: âmbar)
+    inactiveTrackColor: Colors.grey[900],
+    thumbColor: Colors.white,
+  ),
+  child: RotatedBox(
+    quarterTurns: 3,
+    child: Slider(...) // seu slider aqui
+  ),
+)
