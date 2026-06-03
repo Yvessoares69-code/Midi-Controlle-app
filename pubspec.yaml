@@ -1,0 +1,20 @@
+name: midi_controller_app
+description: "Controlador MIDI de baixa latência."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Biblioteca para comunicação MIDI (USB e BLE)
+  flutter_midi_command: ^0.5.0 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
