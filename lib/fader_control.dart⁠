@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'midi_manager.dart';
+
+class FaderControl extends StatefulWidget {
+  final int ccNumber; // Ex: 7 para Volume
+  final String label;
+
+  FaderControl({required this.ccNumber, required this.label});
+
+  @override
+  _FaderControlState createState() => _FaderControlState();
+}
+
+class _FaderControlState extends State<FaderControl> {
+  double _value = 0.0;
+  final MidiManager _midi = MidiManager();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(widget.label, style: TextStyle(color: Colors.white)),
+        RotatedBox(
+          quarterTurns: 3, // Deixa o slider na vertical
+          child: Slider(
+            value: _value,
+            min: 0,
+            max: 127,
+            activeColor: Colors.blueAccent,
+            onChanged: (double val) {
+              setState(() => _value = val);
+              _midi.sendCC(widget.ccNumber, val.toInt());
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
