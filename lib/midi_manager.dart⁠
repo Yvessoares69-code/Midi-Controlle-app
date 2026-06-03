@@ -50,3 +50,42 @@ class MidiManager {
     return devices != null && devices.isNotEmpty;
   }
 }
+import 'package:flutter/material.dart';
+import 'midi_scanner.dart';
+import 'fader_control.dart';
+import 'knob_control.dart';
+import 'trigger_pad.dart';
+
+void main() => runApp(const MaterialApp(home: MidiDashboard()));
+
+class MidiDashboard extends StatelessWidget {
+  const MidiDashboard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text("MIDI Controller Pro"), backgroundColor: Colors.grey[900]),
+      body: Column(
+        children: [
+          // Área de Conexão
+          Container(height: 120, child: MidiScanner()),
+          
+          Divider(color: Colors.white),
+          
+          // Área de Controles
+          Expanded(
+            child: Wrap(
+              spacing: 20, runSpacing: 20,
+              children: [
+                FaderControl(ccNumber: 7, label: "Vol"),
+                KnobControl(ccNumber: 10, label: "Pan"),
+                TriggerPad(note: 60, label: "Kick"),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
